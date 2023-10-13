@@ -23,7 +23,7 @@ namespace DATOS
         {
              cn = new SQLiteConnection(dbstring);
         }
-
+        // sugerencia
         public bool ProbarConexion()
         {
             try
