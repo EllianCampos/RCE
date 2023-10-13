@@ -11,7 +11,7 @@ namespace DATOS
 {
     public class Datos
     {
-        SQLiteConnection conn;
+        SQLiteConnection conexion111;
         SQLiteDataAdapter dataAdapter;
         DataTable dataTable;
 
@@ -19,15 +19,15 @@ namespace DATOS
 
         public Datos()
         {
-             conn = new SQLiteConnection(dbstring);
+             conexion111 = new SQLiteConnection(dbstring);
         }
 
         public bool Ejecutar(SQLiteCommand cmd)
         {
             try
             {
-                conn.Open();
-                cmd.Connection = conn;
+                conexion111.Open();
+                cmd.Connection = conexion111;
                 int rowsAffected = cmd.ExecuteNonQuery();
 
                 if (rowsAffected > 0) return true; else return false;
@@ -39,7 +39,7 @@ namespace DATOS
             }
             finally
             {
-                conn.Close();
+                conexion111.Close();
             }
         }
 
@@ -47,8 +47,8 @@ namespace DATOS
         {
             try
             {
-                conn.Open();
-                cmd.Connection = conn;
+                conexion111.Open();
+                cmd.Connection = conexion111;
                 dataAdapter = new SQLiteDataAdapter(cmd);
                 dataTable = new DataTable();
                 dataAdapter.Fill(dataTable);
@@ -61,7 +61,7 @@ namespace DATOS
             }
             finally
             {
-                conn.Close();
+                conexion111.Close();
             }
         }
     }
