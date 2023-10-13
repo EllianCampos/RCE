@@ -2,7 +2,7 @@
 {
     public class Cursos
     {
-     //Datos para los cursos  
+     //Datos para los cursos
         public string NombreCurso { get; set; }
         public string ProfesorEncargado { get; set; }
         public string Duracion { get; set; }

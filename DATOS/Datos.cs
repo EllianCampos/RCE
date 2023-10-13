@@ -6,28 +6,47 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Configuration;
+using System.Data.SqlClient;
 
 namespace DATOS
 {
     public class Datos
     {
-        SQLiteConnection conexion111;
-        SQLiteDataAdapter dataAdapter;
-        DataTable dataTable;
+        SQLiteConnection cn;
+        SQLiteDataAdapter da;
+        DataTable dt;
 
         private static string dbstring = ConfigurationManager.ConnectionStrings["dbstring"].ConnectionString;
+        SQLiteConnection conexionSQLite = new SQLiteConnection(dbstring);
 
         public Datos()
         {
-             conexion111 = new SQLiteConnection(dbstring);
+             cn = new SQLiteConnection(dbstring);
+        }
+
+        public bool ProbarConexion()
+        {
+            try
+            {
+                conexionSQLite.Open();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            finally
+            {
+                conexionSQLite.Close();
+            }
         }
 
         public bool Ejecutar(SQLiteCommand cmd)
         {
             try
             {
-                conexion111.Open();
-                cmd.Connection = conexion111;
+                cn.Open();
+                cmd.Connection = cn;
                 int rowsAffected = cmd.ExecuteNonQuery();
 
                 if (rowsAffected > 0) return true; else return false;
@@ -39,7 +58,7 @@ namespace DATOS
             }
             finally
             {
-                conexion111.Close();
+                cn.Close();
             }
         }
 
@@ -47,12 +66,12 @@ namespace DATOS
         {
             try
             {
-                conexion111.Open();
-                cmd.Connection = conexion111;
-                dataAdapter = new SQLiteDataAdapter(cmd);
-                dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-                return dataTable;
+                cn.Open();
+                cmd.Connection = cn;
+                da = new SQLiteDataAdapter(cmd);
+                dt = new DataTable();
+                da.Fill(dt);
+                return dt;
             }
             catch (Exception)
             {
@@ -61,7 +80,7 @@ namespace DATOS
             }
             finally
             {
-                conexion111.Close();
+                cn.Close();
             }
         }
     }
