@@ -36,9 +36,13 @@
             btncursos = new Button();
             panelLogo = new Panel();
             pictureBox1 = new PictureBox();
+            panelTitulo = new Panel();
+            lbltitulo = new Label();
+            panelformularios = new Panel();
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panelTitulo.SuspendLayout();
             SuspendLayout();
             // 
             // panelMenu
@@ -63,7 +67,7 @@
             btnregistrocursos.ForeColor = Color.Gainsboro;
             btnregistrocursos.Image = (Image)resources.GetObject("btnregistrocursos.Image");
             btnregistrocursos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnregistrocursos.Location = new Point(0, 279);
+            btnregistrocursos.Location = new Point(0, 260);
             btnregistrocursos.Name = "btnregistrocursos";
             btnregistrocursos.Padding = new Padding(12, 0, 0, 0);
             btnregistrocursos.Size = new Size(220, 60);
@@ -82,7 +86,7 @@
             btnestudiantes.ForeColor = Color.Gainsboro;
             btnestudiantes.Image = (Image)resources.GetObject("btnestudiantes.Image");
             btnestudiantes.ImageAlign = ContentAlignment.MiddleLeft;
-            btnestudiantes.Location = new Point(0, 219);
+            btnestudiantes.Location = new Point(0, 200);
             btnestudiantes.Name = "btnestudiantes";
             btnestudiantes.Padding = new Padding(12, 0, 0, 0);
             btnestudiantes.Size = new Size(220, 60);
@@ -101,7 +105,7 @@
             btnProfesores.ForeColor = Color.Gainsboro;
             btnProfesores.Image = (Image)resources.GetObject("btnProfesores.Image");
             btnProfesores.ImageAlign = ContentAlignment.MiddleLeft;
-            btnProfesores.Location = new Point(0, 159);
+            btnProfesores.Location = new Point(0, 140);
             btnProfesores.Name = "btnProfesores";
             btnProfesores.Padding = new Padding(12, 0, 0, 0);
             btnProfesores.Size = new Size(220, 60);
@@ -121,7 +125,7 @@
             btncursos.ForeColor = Color.Gainsboro;
             btncursos.Image = (Image)resources.GetObject("btncursos.Image");
             btncursos.ImageAlign = ContentAlignment.MiddleLeft;
-            btncursos.Location = new Point(0, 99);
+            btncursos.Location = new Point(0, 80);
             btncursos.Name = "btncursos";
             btncursos.Padding = new Padding(12, 0, 0, 0);
             btncursos.Size = new Size(220, 60);
@@ -139,24 +143,56 @@
             panelLogo.Dock = DockStyle.Top;
             panelLogo.Location = new Point(0, 0);
             panelLogo.Name = "panelLogo";
-            panelLogo.Size = new Size(220, 99);
+            panelLogo.Size = new Size(220, 80);
             panelLogo.TabIndex = 0;
             // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Location = new Point(12, 3);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(190, 78);
+            pictureBox1.Size = new Size(190, 71);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            // 
+            // panelTitulo
+            // 
+            panelTitulo.BackColor = Color.FromArgb(0, 150, 136);
+            panelTitulo.Controls.Add(lbltitulo);
+            panelTitulo.Dock = DockStyle.Top;
+            panelTitulo.Location = new Point(220, 0);
+            panelTitulo.Name = "panelTitulo";
+            panelTitulo.Size = new Size(880, 80);
+            panelTitulo.TabIndex = 1;
+            // 
+            // lbltitulo
+            // 
+            lbltitulo.Anchor = AnchorStyles.None;
+            lbltitulo.AutoSize = true;
+            lbltitulo.Font = new Font("Century Gothic", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lbltitulo.ForeColor = Color.White;
+            lbltitulo.Location = new Point(152, 22);
+            lbltitulo.Name = "lbltitulo";
+            lbltitulo.Size = new Size(569, 36);
+            lbltitulo.TabIndex = 0;
+            lbltitulo.Text = "Laboratorio de Innovación Comunitaria";
+            // 
+            // panelformularios
+            // 
+            panelformularios.Dock = DockStyle.Fill;
+            panelformularios.Location = new Point(220, 80);
+            panelformularios.Name = "panelformularios";
+            panelformularios.Size = new Size(880, 417);
+            panelformularios.TabIndex = 2;
             // 
             // FrmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 497);
+            ClientSize = new Size(1100, 497);
+            Controls.Add(panelformularios);
+            Controls.Add(panelTitulo);
             Controls.Add(panelMenu);
             Name = "FrmMenuPrincipal";
             Text = "Form1";
@@ -164,6 +200,8 @@
             panelMenu.ResumeLayout(false);
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panelTitulo.ResumeLayout(false);
+            panelTitulo.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -176,5 +214,8 @@
         private Button btnProfesores;
         private Button btnregistrocursos;
         private PictureBox pictureBox1;
+        private Panel panelTitulo;
+        private Label lbltitulo;
+        private Panel panelformularios;
     }
 }

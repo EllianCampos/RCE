@@ -121,7 +121,7 @@
   <data name="btnregistrocursos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6QAAAOkBVJIUSwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAATwSURBVFhHvZZ9
+        5gAAAOYBIly6UQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAATwSURBVFhHvZZ9
         TBtlHMfpvfQKbYG2rh0Dhjg3xPFiaxzgcJOXAENeRnEgRLOhjGxmIjhkKs1EF/7BgAzGGARHsigLJERk
         GiDDBJGXTvgDTCQxCtsfRAiZL8QFenelP587UhKuPUZp4zf55HrP3T3fb++55/k9Xq4Iw7yukAT2iJLi
         C+g0c6PVM8IQBkTyNpQTOGa9eTkTygtjAMexNdR2QnCPkAOIx8oHl8p+Qkd4HHnJzzIwaYK1sQ9Aq5az
@@ -149,7 +149,7 @@
   <data name="btnestudiantes.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6QAAAOkBVJIUSwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAjLSURBVFhHvZcJ
+        5gAAAOYBIly6UQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAjLSURBVFhHvZcJ
         VFTXGcdHmJ1ZGGaYhZlhEZBhH5CloOxFEAVljWJUKogIrmBiW6OkGvcFCFEjdUmNckwNRGvqUkWpe0SN
         0Wjrlmi0adW4oyAC/3zvsURgctLTk+Y7539m7nv3u7//fXd593F+JESkZCGXO89OIljH53JLqZxBkjI3
         fyL0VhzODLFAsNrKyupNKg8h0aX/LqRqmeg9WxH/RZKnrnXOsKD2FWNiUZo2GElm18dSIf+pXMzfQPXs
@@ -193,7 +193,7 @@
   <data name="btnProfesores.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6QAAAOkBVJIUSwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAYSSURBVFhHtZd5
+        5gAAAOYBIly6UQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAYSSURBVFhHtZd5
         TFRXFMb1vVmZgdk3GAYGhnUYR2QRGSrKVhAFF0SiNjWtGhusbbUqtRWpxaXRGnetijaUYtXUihKjxTSt
         FDVS21DjH7hQGnFJUJGxLgjD1/seM1NQYgeqX/Il77577u+cue/cl3lDBigf4nk0l/8zRdP3h1L0Q4rm
         3OdweQ0URb1P5rzYqFchudzkI9UZjsh0ge3GEckwj50MS1o+olKnwhSfBqk20E6KaaO5vCaaxz9Jlkwj
@@ -226,7 +226,7 @@
   <data name="btncursos.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAA
-        6QAAAOkBVJIUSwAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPYSURBVFhHvZZf
+        5gAAAOYBIly6UQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAPYSURBVFhHvZZf
         TFNXHMfvu0uWxYe9+KJPPvm0p+3Ff0BRBtgOBOk/6e293JV2gBYEQTf/ZG5zZMZlC5oYdS5TEsU4VAQU
         MBgxY/hn4U+F0uLQ9NbYko3EmI19d87ltra9x9oW6y/5pDe953x/n3POvU25TEs0iR8IJuGIaBa/o9fq
         19kvwSqsFixCu2AW/iMghh7ezK9Rh7354iv4FWTFbaTRPwmNY1mgclKltEqdtvRymB3L7Wb7IRL+PKFZ

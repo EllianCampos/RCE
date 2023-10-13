@@ -11,6 +11,7 @@ namespace PRESENTACION
         private Button currentButton;
         private Random random;
         private int tempIndex;
+        private Form activarformulario;
         //Constructor
         public FrmMenuPrincipal()
         {
@@ -32,7 +33,7 @@ namespace PRESENTACION
             int index = random.Next(TemasdeColor.ColorList.Count);
             while (tempIndex == index)
             {
-                random.Next(TemasdeColor.ColorList.Count);
+                index = random.Next(TemasdeColor.ColorList.Count);
             }
             tempIndex = index;
             string color = TemasdeColor.ColorList[index];
@@ -49,9 +50,28 @@ namespace PRESENTACION
                     currentButton = (Button)btnSender;
                     currentButton.BackColor = color;
                     currentButton.ForeColor = Color.White;
+                    panelTitulo.BackColor = color;
+                    panelLogo.BackColor = TemasdeColor.ChangeColorBrightness(color, -0.3);
                 }
 
             }
+        }
+        private void AbrirFormularios(Form childForm, object btnSender)
+        {
+            if (activarformulario != null)
+            {
+                activarformulario.Close();
+            }
+            ActivateButton(btnSender);
+            activarformulario = childForm;
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+            this.panelformularios.Controls.Add(childForm);
+            this.panelformularios.Tag = childForm;
+            childForm.BringToFront();
+            childForm.Show();
+            lbltitulo.Text = childForm.Text;
         }
         private void DisableButton()
         {
@@ -68,7 +88,7 @@ namespace PRESENTACION
 
         private void btncursos_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            AbrirFormularios(new Formularios.FormuCursos(), sender);
         }
 
         private void btnProfesores_Click(object sender, EventArgs e)
