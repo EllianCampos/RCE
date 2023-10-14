@@ -68,7 +68,7 @@ namespace PRESENTACION
             childForm.FormBorderStyle = FormBorderStyle.None;
             childForm.Dock = DockStyle.Fill;
             this.panelformularios.Controls.Add(childForm);
-            this.panelformularios.Tag = childForm;
+            this.panelformularios.Tag = childForm; ;
             childForm.BringToFront();
             childForm.Show();
             lbltitulo.Text = childForm.Text;
@@ -88,7 +88,8 @@ namespace PRESENTACION
 
         private void btncursos_Click(object sender, EventArgs e)
         {
-            AbrirFormularios(new Formularios.FormuCursos(), sender);
+            AbrirFormularios(new FCursos(),sender);
+           
         }
 
         private void btnProfesores_Click(object sender, EventArgs e)

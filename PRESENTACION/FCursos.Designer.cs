@@ -1,6 +1,6 @@
-﻿namespace PRESENTACION.Formularios
+﻿namespace PRESENTACION
 {
-    partial class FormuCursos
+    partial class FCursos
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            button1 = new Button();
+            SuspendLayout();
+            // 
+            // button1
+            // 
+            button1.Location = new Point(240, 124);
+            button1.Name = "button1";
+            button1.Size = new Size(214, 82);
+            button1.TabIndex = 0;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // FCursos
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Text = "Cursos";
+            Controls.Add(button1);
+            Name = "FCursos";
+            Text = "FCursos";
+            ResumeLayout(false);
         }
 
         #endregion
+
+        private Button button1;
     }
 }

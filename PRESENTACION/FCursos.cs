@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PRESENTACION.Formularios
+namespace PRESENTACION
 {
-    public partial class FormuCursos : Form
+    public partial class FCursos : Form
     {
-        public FormuCursos()
+        public FCursos()
         {
             InitializeComponent();
         }
