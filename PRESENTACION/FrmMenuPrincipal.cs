@@ -6,7 +6,6 @@ namespace PRESENTACION
 {
     public partial class FrmMenuPrincipal : Form
     {
-        LogicaMenuPrincipal logicaMenuPrincipal = new LogicaMenuPrincipal();
         //Campos
         private Button currentButton;
         private Random random;
