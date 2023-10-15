@@ -8,19 +8,23 @@ namespace ENTIDADES
 {
     public class Evaluacion
     {
-
         public int IdEvaluacion { get; set; }
-        public string NombreEvaluacion { get; set; }
-        public double PorcentajeEvaluacion { get; set; }
-        public string DescripcionEvaluacion { get; set; }
-        public int IdRubro { get; set; }
-        public Evaluacion(int idEvaluacion, string nombreEvaluacion, double porcentajeEvaluacion, string descripcionEvaluacion, int idRubro)
+        public string Nombre { get; set; }
+        public double Porcentaje { get; set; }
+        public string Descripcion { get; set; }
+        public int CalculoAutomatico { get; set; }
+        public int IdCurso { get; set; }
+
+        public Evaluacion() { }
+
+        public Evaluacion(int idEvaluacion, string nombre, double porcentaje, string descripcion, int calculoAutomatico, int idCurso)
         {
             IdEvaluacion = idEvaluacion;
-            NombreEvaluacion = nombreEvaluacion;
-            PorcentajeEvaluacion = porcentajeEvaluacion;
-            DescripcionEvaluacion = descripcionEvaluacion;
-            IdRubro = idRubro;
+            Nombre = nombre;
+            Porcentaje = porcentaje;
+            Descripcion = descripcion;
+            CalculoAutomatico = calculoAutomatico;
+            IdCurso = idCurso;
         }
     }
 }
