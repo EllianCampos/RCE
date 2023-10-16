@@ -179,7 +179,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             Name = "FProfesores";
-            Text = "FProfesores";
+            Text = "Profesores";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

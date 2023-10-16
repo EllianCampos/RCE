@@ -1,11 +1,13 @@
 using System.Windows.Forms;
 using LOGICA;
 using ENTIDADES;
+using Microsoft.VisualBasic;
 
 namespace PRESENTACION
 {
     public partial class FrmMenuPrincipal : Form
     {
+        //LogicaMenuPrincipal logicaMenuPrincipal = new LogicaMenuPrincipal();
         //Campos
         private Button currentButton;
         private Random random;
@@ -87,23 +89,47 @@ namespace PRESENTACION
 
         private void btncursos_Click(object sender, EventArgs e)
         {
-            AbrirFormularios(new FCursos(),sender);
-           
+            AbrirFormularios(new Cursos(), sender);
+
         }
 
         private void btnProfesores_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            AbrirFormularios(new FProfesores(), sender);
         }
 
         private void btnestudiantes_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            AbrirFormularios(new FEstudiantes(), sender);
         }
 
         private void btnregistrocursos_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender);
+            AbrirFormularios(new FRegistro(), sender);
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            if (activarformulario != null)
+                activarformulario.Close();
+            Reset();
+        }
+        private void Reset()
+        {
+            DisableButton();
+            lbltitulo.Text = "Laboratorio de Innovación Comunitaria";
+            panelTitulo.BackColor = Color.FromArgb(051, 51, 76);
+            panelLogo.BackColor = Color.FromArgb(39, 39, 58);
+            currentButton = null;
+
+        }
+
+        private void horayfecha_Tick(object sender, EventArgs e)
+        {
+            label1.Text = DateTime.Now.ToString("hhh:mm:ss");
+
+        }
+
+
     }
 }

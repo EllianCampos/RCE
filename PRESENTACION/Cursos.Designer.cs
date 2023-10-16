@@ -1,6 +1,6 @@
 ﻿namespace PRESENTACION
 {
-    partial class FCursos
+    partial class Cursos
     {
         /// <summary>
         /// Required designer variable.
@@ -40,14 +40,14 @@
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
-            // FCursos
+            // Cursos
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
             Controls.Add(button1);
-            Name = "FCursos";
-            Text = "FCursos";
+            Name = "Cursos";
+            Text = "Cursos";
             ResumeLayout(false);
         }
 

@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMenuPrincipal));
             panelMenu = new Panel();
+            label1 = new Label();
             btnregistrocursos = new Button();
             btnestudiantes = new Button();
             btnProfesores = new Button();
@@ -39,6 +41,7 @@
             panelTitulo = new Panel();
             lbltitulo = new Label();
             panelformularios = new Panel();
+            horayfecha = new System.Windows.Forms.Timer(components);
             panelMenu.SuspendLayout();
             panelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -48,6 +51,7 @@
             // panelMenu
             // 
             panelMenu.BackColor = Color.FromArgb(51, 51, 76);
+            panelMenu.Controls.Add(label1);
             panelMenu.Controls.Add(btnregistrocursos);
             panelMenu.Controls.Add(btnestudiantes);
             panelMenu.Controls.Add(btnProfesores);
@@ -58,6 +62,17 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(220, 497);
             panelMenu.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Century Gothic", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.ForeColor = Color.White;
+            label1.Location = new Point(65, 365);
+            label1.Name = "label1";
+            label1.Size = new Size(72, 22);
+            label1.TabIndex = 5;
+            label1.Text = "lblhora";
             // 
             // btnregistrocursos
             // 
@@ -155,10 +170,11 @@
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
+            pictureBox1.Click += pictureBox1_Click;
             // 
             // panelTitulo
             // 
-            panelTitulo.BackColor = Color.FromArgb(0, 150, 136);
+            panelTitulo.BackColor = Color.FromArgb(51, 51, 76);
             panelTitulo.Controls.Add(lbltitulo);
             panelTitulo.Dock = DockStyle.Top;
             panelTitulo.Location = new Point(220, 0);
@@ -186,6 +202,11 @@
             panelformularios.Size = new Size(880, 417);
             panelformularios.TabIndex = 2;
             // 
+            // horayfecha
+            // 
+            horayfecha.Enabled = true;
+            horayfecha.Tick += horayfecha_Tick;
+            // 
             // FrmMenuPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -195,9 +216,10 @@
             Controls.Add(panelTitulo);
             Controls.Add(panelMenu);
             Name = "FrmMenuPrincipal";
-            Text = "Form1";
+            Text = "RCE";
             Load += FrmMenuPrincipal_Load;
             panelMenu.ResumeLayout(false);
+            panelMenu.PerformLayout();
             panelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelTitulo.ResumeLayout(false);
@@ -217,5 +239,7 @@
         private Panel panelTitulo;
         private Label lbltitulo;
         private Panel panelformularios;
+        private System.Windows.Forms.Timer horayfecha;
+        private Label label1;
     }
 }
