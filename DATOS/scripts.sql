@@ -33,6 +33,7 @@ CREATE TABLE "Matricula" (
 CREATE TABLE "Evaluaciones" (
 	"IdEvaluacion" INTEGER NOT NULL UNIQUE,
 	"NombreEvaluacion" TEXT NOT NULL,
+	"PuntosEvaluacion" INTEGER,
 	"PorcentajeEvaluacion" REAL NOT NULL,
 	"DescripcionEvaluacion" TEXT,
 	"CalculoAutomatico" INTEGER NOT NULL,
@@ -44,7 +45,7 @@ CREATE TABLE "Evaluaciones" (
 
 CREATE TABLE "Calificaciones"(
 	"IdCalificacion" INTEGER NOT NULL UNIQUE,
-	"Nota"	REAL NOT NULL,
+	"PuntosCalificacion" INTEGER NOT NULL,
 	"IdEvaluacion"	INTEGER NOT NULL,
 	"IdEstudiante"	INTEGER NOT NULL,
 	FOREIGN KEY("IdEvaluacion") REFERENCES "Evaluaciones"("IdEvaluacion"),
@@ -73,53 +74,77 @@ INSERT INTO Matricula (IdCurso, IdEstudiante) VALUES(1,2);
 INSERT INTO Matricula (IdCurso, IdEstudiante) VALUES(1,3);
 
 -- CREAR LAS EVALUACIONES DEL CURSO
-INSERT INTO Evaluaciones (IdEvaluacion, NombreEvaluacion, PorcentajeEvaluacion, CalculoAutomatico, IdCurso) 
+INSERT INTO Evaluaciones (IdEvaluacion, NombreEvaluacion, PuntosEvaluacion, PorcentajeEvaluacion, CalculoAutomatico, IdCurso) 
 VALUES
-	(1, 'Examen 1', 15, 0, 1),
-	(2, 'Examen 2', 15, 0, 1),
-	(3, 'Proyecto', 25, 0, 1),
-	(4, 'Asistencia', 15, 1, 1),
-	(5, 'Tareas', 30, 1, 1);
+	(1, 'Examen 1', 100, 15, 0, 1),
+	(2, 'Examen 2', 100, 15, 0, 1),
+	(3, 'Proyecto', 100, 25, 0, 1),
+	(4, 'Asistencia', 100, 15, 1, 1),
+	(5, 'Tareas', 100, 30, 1, 1);
 	
 -- Revision Examen 1
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 1, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (85, 1, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (70, 1, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 1, 1);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (85, 1, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (70, 1, 3);
 
 -- Revision Examen 2
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 2, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 2, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (70, 2, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 2, 1);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (90, 2, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (70, 2, 3);
 
 -- Revision Proyecto final
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 3, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (95, 3, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (65, 3, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 3, 1);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (95, 3, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (65, 3, 3);
 
 -- Asistencia
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 1
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
 
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (0, 4, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 2
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (0, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
 
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 3
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 4
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 5
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 6
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 7
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 8
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
+
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1); -- 9
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
 
 -- Tareas
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 5, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (95, 5, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 5, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 5, 1);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (95, 5, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (90, 5, 3);
 
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 5, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (95, 5, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 5, 3);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (100, 5, 1);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (95, 5, 2);
+INSERT INTO Calificaciones (PuntosCalificacion, IdEvaluacion, IdEstudiante) VALUES (90, 5, 3);
 
 -- Settear la cantidad de evaluaciones autocalculables
-UPDATE Evaluaciones SET CantidadEvaluaciones = 3 WHERE IdEvaluacion = 4;
+UPDATE Evaluaciones SET CantidadEvaluaciones = 9 WHERE IdEvaluacion = 4;
 UPDATE Evaluaciones SET CantidadEvaluaciones = 2 WHERE IdEvaluacion = 5;
 
 SELECT * FROM Cursos;
