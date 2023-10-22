@@ -186,17 +186,16 @@ namespace LOGICA
                 if (Convert.ToInt32(dr["CalculoAutomatico"]) == 0)
                 {
                     // Calcular el porcentaje obtenido
-                    decimal nota = Convert.ToDecimal(dr["Nota"]);
+                    decimal puntosObtenidos = Convert.ToInt32(dr["PuntosCalificacion"]);
+                    decimal puntosTotal = Convert.ToInt32(dr["PuntosEvaluacion"]);
                     decimal porcentaje = Convert.ToDecimal(dr["PorcentajeEvaluacion"]);
-                    decimal porcentajeObtenidoEnLaEvaluacion = nota * porcentaje / 100;
+                    decimal porcentajeObtenidoEnLaEvaluacion = porcentaje * puntosObtenidos / puntosTotal;
 
-                    // Obtner el indice el estudiante en el reporte
                     var indexRow = 0;
                     foreach (DataRow item in dtReporte.Rows)
                     {
                         if (item["IdEstudiante"].ToString() == dr["IdEstudiante"].ToString())
                         {
-                            //indexRow = dtReporte.Rows.IndexOf(item);
                             item[dr["NombreEvaluacion"].ToString()] = porcentajeObtenidoEnLaEvaluacion;
                         }
                     }
@@ -205,21 +204,19 @@ namespace LOGICA
                 {
                     int cantidad = Convert.ToInt32(dr["CantidadEvaluaciones"].ToString());
 
-                    decimal nota = Convert.ToDecimal(dr["Nota"]);
+                    // Calcular el porcentaje obtenido
+                    decimal puntosObtenidos = Convert.ToInt32(dr["PuntosCalificacion"]);
+                    decimal puntosTotal = Convert.ToInt32(dr["PuntosEvaluacion"]);
                     decimal porcentaje = Convert.ToDecimal(dr["PorcentajeEvaluacion"]);
-                    decimal porcentajeObtenidoEnLaEvaluacion = nota * porcentaje / (100 * cantidad);
-                    
-                    // Obtner el indice el estudiante en el reporte
-                    var indexRow = 0;
+                    decimal porcentajeObtenidoEnLaEvaluacion = (porcentaje / cantidad) * puntosObtenidos / puntosTotal;
+
                     foreach (DataRow item in dtReporte.Rows)
                     {
                         if (item["IdEstudiante"].ToString() == dr["IdEstudiante"].ToString())
                         {
-                            //indexRow = dtReporte.Rows.IndexOf(item);
-
                             decimal porcentajeActual;
                             if (decimal.TryParse(item[dr["NombreEvaluacion"].ToString()].ToString(), out porcentajeActual))
-                            {   
+                            {
                                 item[dr["NombreEvaluacion"].ToString()] = porcentajeActual + porcentajeObtenidoEnLaEvaluacion;
                             }
                             else
