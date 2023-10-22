@@ -14,6 +14,7 @@ namespace LOGICA
     {
         Datos datos = new Datos();
         SQLiteCommand cmd;
+        LogicaEvaluaciones logicaEvaluaciones = new LogicaEvaluaciones();
 
         public List<Calificacion> ObtenerCalificaciones()
         {
@@ -34,7 +35,7 @@ namespace LOGICA
             return listaCalificaciones;
         }
 
-        public List<Promedio> ObtenerPromedios(int IdCurso)
+        public List<Promedio> ObtenerPromedios(int idCurso)
         {
             cmd = new SQLiteCommand();
             cmd.CommandText = "SELECT * FROM Calificaciones c, Evaluaciones e, Estudiantes es WHERE c.IdEvaluacion = e.IdEvaluacion AND c.IdEstudiante = es.IdEstudiante;";
@@ -43,7 +44,7 @@ namespace LOGICA
             // Filtrar calificaciones por curso
             foreach (DataRow dr in dt_calif_estu_evalua.Rows)
             {
-                if (Convert.ToInt32(dr["IdCurso"]) != IdCurso)
+                if (Convert.ToInt32(dr["IdCurso"]) != idCurso)
                 {
                     dt_calif_estu_evalua.Rows[Convert.ToInt32(dr["IdCalificacion"]) - 1].Delete();
                 }
@@ -90,7 +91,163 @@ namespace LOGICA
                     }
                 }
             }
+
+     
+
             return listaPromedios; //15
+        }
+        
+        public DataTable ObtenerReportePromedios(int idCurso)
+        {
+            // Obtner las evaluaciones 
+            cmd = new SQLiteCommand();
+            cmd.CommandText = "SELECT * FROM Calificaciones c, Evaluaciones e, Estudiantes es " +
+                "WHERE c.IdEvaluacion = e.IdEvaluacion AND c.IdEstudiante = es.IdEstudiante;";
+            DataTable dt_calif_estu_evalua = datos.Obtener(cmd);
+
+            // Filtrar calificaciones por curso
+            foreach (DataRow dr in dt_calif_estu_evalua.Rows)
+            {
+                if (Convert.ToInt32(dr["IdCurso"]) != idCurso)
+                {
+                    dt_calif_estu_evalua.Rows[Convert.ToInt32(dr["IdCalificacion"]) - 1].Delete();
+                }
+            }
+            dt_calif_estu_evalua.AcceptChanges();
+
+            // Crear el DataTable del reporte
+            DataTable dtReporte = new DataTable("Promedios");
+            DataColumn column;
+            DataRow row;
+
+            // Crear la Columna del ID
+            column = new DataColumn();
+            column.DataType = typeof(int);
+            column.ColumnName = "IdEstudiante";
+            column.ReadOnly = true;
+            column.Unique = true;
+            dtReporte.Columns.Add(column);
+
+            // Crear la Columna del Nombre
+            column = new DataColumn();
+            column.DataType = typeof(string);
+            column.ColumnName = "NombreEstudiante";
+            column.ReadOnly = true;
+            column.Unique = false;
+            dtReporte.Columns.Add(column);
+
+            // Generar una columna por cada EVALUACION
+            List<Evaluacion> listaEvaluaciones = logicaEvaluaciones.ObtenerEvaluaciones(idCurso);
+            foreach (Evaluacion evaluacion in listaEvaluaciones)
+            {
+                column = new DataColumn();
+                column.DataType = typeof(double);
+                column.ColumnName = evaluacion.Nombre;
+                column.ReadOnly = false;
+                column.Unique = false;
+                dtReporte.Columns.Add(column);
+            }
+
+            // Crear la Columna del Promedio
+            column = new DataColumn();
+            column.DataType = typeof(double);
+            column.ColumnName = "Promedio";
+            column.ReadOnly = false;
+            column.Unique = false;
+            dtReporte.Columns.Add(column);
+
+            // Crear la lista de los estudiantes SIN notas
+            foreach (DataRow dr in dt_calif_estu_evalua.Rows)
+            {
+                int idEstudiante = Convert.ToInt32(dr["IdEstudiante"]);
+
+                // Validar si el estudiante ya existe
+                bool encontrado = false;
+                foreach (DataRow dr2 in dtReporte.Rows)
+                {
+                    if (Convert.ToInt32(dr2["IdEstudiante"]) == idEstudiante)
+                    {
+                        encontrado = true;
+                    }
+                }
+
+                if (encontrado == false)
+                {
+                    row = dtReporte.NewRow();
+                    row["IdEstudiante"] = idEstudiante;
+                    row["NombreEstudiante"] = Convert.ToString(dr["NombreEstudiante"]) + " " + Convert.ToString(dr["ApellidosEstudiante"]);
+                    dtReporte.Rows.Add(row);
+                }                
+            }
+
+            // Generar las notas 
+            foreach (DataRow dr in dt_calif_estu_evalua.Rows )
+            {
+                if (Convert.ToInt32(dr["CalculoAutomatico"]) == 0)
+                {
+                    // Calcular el porcentaje obtenido
+                    decimal nota = Convert.ToDecimal(dr["Nota"]);
+                    decimal porcentaje = Convert.ToDecimal(dr["PorcentajeEvaluacion"]);
+                    decimal porcentajeObtenidoEnLaEvaluacion = nota * porcentaje / 100;
+
+                    // Obtner el indice el estudiante en el reporte
+                    var indexRow = 0;
+                    foreach (DataRow item in dtReporte.Rows)
+                    {
+                        if (item["IdEstudiante"].ToString() == dr["IdEstudiante"].ToString())
+                        {
+                            //indexRow = dtReporte.Rows.IndexOf(item);
+                            item[dr["NombreEvaluacion"].ToString()] = porcentajeObtenidoEnLaEvaluacion;
+                        }
+                    }
+                }
+                else
+                {
+                    int cantidad = Convert.ToInt32(dr["CantidadEvaluaciones"].ToString());
+
+                    decimal nota = Convert.ToDecimal(dr["Nota"]);
+                    decimal porcentaje = Convert.ToDecimal(dr["PorcentajeEvaluacion"]);
+                    decimal porcentajeObtenidoEnLaEvaluacion = nota * porcentaje / (100 * cantidad);
+                    
+                    // Obtner el indice el estudiante en el reporte
+                    var indexRow = 0;
+                    foreach (DataRow item in dtReporte.Rows)
+                    {
+                        if (item["IdEstudiante"].ToString() == dr["IdEstudiante"].ToString())
+                        {
+                            //indexRow = dtReporte.Rows.IndexOf(item);
+
+                            decimal porcentajeActual;
+                            if (decimal.TryParse(item[dr["NombreEvaluacion"].ToString()].ToString(), out porcentajeActual))
+                            {   
+                                item[dr["NombreEvaluacion"].ToString()] = porcentajeActual + porcentajeObtenidoEnLaEvaluacion;
+                            }
+                            else
+                            {
+                                item[dr["NombreEvaluacion"].ToString()] = porcentajeObtenidoEnLaEvaluacion;
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Generar los promedios
+            foreach (DataRow dr in dtReporte.Rows)
+            {
+                double porcentaje = 0;
+                foreach (Evaluacion evaluacion in listaEvaluaciones)
+                {
+                    try
+                    {
+                        porcentaje += Convert.ToDouble(dr[evaluacion.Nombre]);
+                    }
+                    catch (Exception ex) { }                   
+                }
+                dr["Promedio"] = porcentaje;
+                porcentaje = 0;
+            }
+
+            return dtReporte;
         }
     }
 }

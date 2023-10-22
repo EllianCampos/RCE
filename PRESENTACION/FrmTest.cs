@@ -24,7 +24,7 @@ namespace PRESENTACION
         private void FrmTest_Load(object sender, EventArgs e)
         {
             dataGridView1.DataSource = null;
-            dataGridView1.DataSource = logicaCalificaciones.ObtenerPromedios(1);
+            dataGridView1.DataSource = logicaCalificaciones.ObtenerReportePromedios(1);
         }
     }
 }

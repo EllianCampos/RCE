@@ -36,6 +36,7 @@ CREATE TABLE "Evaluaciones" (
 	"PorcentajeEvaluacion" REAL NOT NULL,
 	"DescripcionEvaluacion" TEXT,
 	"CalculoAutomatico" INTEGER NOT NULL,
+	"CantidadEvaluaciones" INTEGER,
 	"IdCurso" INTEGER NOT NULL,
 	FOREIGN KEY("IdCurso") REFERENCES "Cursos"("IdCurso"),
 	PRIMARY KEY("IdEvaluacion" AUTOINCREMENT)
@@ -86,25 +87,40 @@ INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (85, 1, 2);
 INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (70, 1, 3);
 
 -- Revision Examen 2
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 1, 1);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 1, 2);
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (70, 1, 3);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 2, 1);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 2, 2);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (70, 2, 3);
 
 -- Revision Proyecto final
 INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 3, 1);
 INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (95, 3, 2);
 INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (65, 3, 3);
 
--- Tareas
-INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) 
-VALUES
-	(100, 5, 1),
-	(95, 5, 2),
-	(90, 5, 3),
-	(100, 5, 1),
-	(95, 5, 2),
-	(90, 5, 3);
+-- Asistencia
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
 
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (0, 4, 2);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 3);
+
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 1);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 4, 2);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (0, 4, 3);
+
+-- Tareas
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 5, 1);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (95, 5, 2);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 5, 3);
+
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (100, 5, 1);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (95, 5, 2);
+INSERT INTO Calificaciones (Nota, IdEvaluacion, IdEstudiante) VALUES (90, 5, 3);
+
+-- Settear la cantidad de evaluaciones autocalculables
+UPDATE Evaluaciones SET CantidadEvaluaciones = 3 WHERE IdEvaluacion = 4;
+UPDATE Evaluaciones SET CantidadEvaluaciones = 2 WHERE IdEvaluacion = 5;
 
 SELECT * FROM Cursos;
 SELECT * FROM Estudiantes;
@@ -116,89 +132,26 @@ SELECT * FROM Calificaciones;
 
 
 
+
 -- Obtener la sumaria de las Evaluaciones de un curso
 SELECT SUM(PorcentajeEvaluacion) FROM Evaluaciones WHERE IdCurso = 1;
 
 
+ 
+ 
+ 
+ 
+ 
+ 
+SELECT * FROM Calificaciones c, Evaluaciones e, Estudiantes es WHERE c.IdEvaluacion = e.IdEvaluacion AND c.IdEstudiante = es.IdEstudiante;
+ 
+ 
+ 
+SELECT count(*) FROM Calificaciones WHERE IdEvaluacion = 4;
 
  
+ 
+ 
+ 
+ 
 
- 
- 
-SELECT c.Nota*(e.PorcentajeEvaluacion/100)
-FROM Calificaciones c, Evaluaciones e 
-WHERE 
-	--IdEstudiante = 1 AND
-	c.IdEvaluacion = e.IdEvaluacion;
- 
- 
-SELECT sum(c.Nota*(e.PorcentajeEvaluacion/100))
-FROM Calificaciones c, Evaluaciones e 
-WHERE 
-	IdEstudiante = 3 AND
-	c.IdEvaluacion = e.IdEvaluacion;
- 
-SELECT 
-	(SELECT sum(c.Nota*(e.PorcentajeEvaluacion/100)) 
-	FROM Calificaciones c, Evaluaciones e 
-	WHERE c.IdEvaluacion = e.IdEvaluacion) 
-FROM Calificaciones;
- 
- 
-SELECT sum(IF(e.CalculoAutomatico = 1, 
-			c.Nota*(e.PorcentajeEvaluacion/100),
-			c.Nota*300/sum(3))))
-FROM Calificaciones c, Evaluaciones e 
-WHERE 
-	IdEstudiante = 3 AND
-	c.IdEvaluacion = e.IdEvaluacion;
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- -- CREATE TABLE "Rubros" (
--- 	"IdRubro" INTEGER NOT NULL UNIQUE,
--- 	"NombreRubro" TEXT NOT NULL,
--- 	"PorcentajeRubro" TEXT NOT NULL,
--- 	"CalculoAutomatico" INTEGER NOT NULL,
--- 	"IdCurso" INT NOT NULL,
--- 	FOREIGN KEY("IdCurso") REFERENCES "Cursos"("IdCurso"), 
--- 	PRIMARY KEY("IdRubro" AUTOINCREMENT)
--- );
-
--- CREATE TABLE "Notas" (
--- 	"IdNota"	INTEGER NOT NULL UNIQUE,
--- 	"Nota"	REAL NOT NULL,
--- 	"IdEvaluacion"	INTEGER NOT NULL,
--- 	"IdEstudiante"	INTEGER NOT NULL,
--- 	FOREIGN KEY("IdEvaluacion") REFERENCES "Evaluaciones"("IdEvaluacion"),
--- 	FOREIGN KEY("IdEstudiante") REFERENCES "Estudiantes"("IdEstudiante"),
--- 	PRIMARY KEY("IdNota" AUTOINCREMENT)
--- );
-
--- CREATE TABLE "Evaluaciones" (
--- 	"IdEvaluacion" INTEGER NOT NULL UNIQUE,
--- 	"NombreEvaluacion" TEXT NOT NULL,
--- 	"NotaEvaluacion" REAL NOT NULL,
--- 	"DescripcionEvaluacion" TEXT,
--- 	"IdRubro" INTEGER,
--- 	FOREIGN KEY("IdRubro") REFERENCES "Rubros"("IdRubro"),
--- 	PRIMARY KEY("IdEvaluacion" AUTOINCREMENT)
--- );
