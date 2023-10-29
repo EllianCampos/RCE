@@ -1,6 +1,6 @@
 ﻿namespace PRESENTACION
 {
-    partial class Cursos
+    partial class FrmCurso
     {
         /// <summary>
         /// Required designer variable.
@@ -28,31 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
+            lblNombreCurso = new Label();
             SuspendLayout();
             // 
-            // button1
+            // lblNombreCurso
             // 
-            button1.Location = new Point(240, 124);
-            button1.Name = "button1";
-            button1.Size = new Size(214, 82);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            lblNombreCurso.AutoSize = true;
+            lblNombreCurso.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNombreCurso.Location = new Point(12, 9);
+            lblNombreCurso.Name = "lblNombreCurso";
+            lblNombreCurso.Size = new Size(66, 17);
+            lblNombreCurso.TabIndex = 0;
+            lblNombreCurso.Text = "curso info";
             // 
-            // Cursos
+            // FrmCurso
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(button1);
-            Name = "Cursos";
-            Text = "Cursos";
+            Controls.Add(lblNombreCurso);
+            Name = "FrmCurso";
+            Text = "FrmCurso";
+            Load += FrmCurso_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private Button button1;
+        private Label lblNombreCurso;
     }
 }

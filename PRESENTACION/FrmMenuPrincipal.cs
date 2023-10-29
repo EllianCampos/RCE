@@ -84,8 +84,7 @@ namespace PRESENTACION
 
         private void btncursos_Click(object sender, EventArgs e)
         {
-            AbrirFormularios(new Cursos(), sender);
-
+            AbrirFormularios(new FrmCursos(), sender);
         }
 
         private void btnProfesores_Click(object sender, EventArgs e)
