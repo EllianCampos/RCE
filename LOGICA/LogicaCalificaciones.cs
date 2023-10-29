@@ -137,7 +137,7 @@ namespace LOGICA
             dtReporte.Columns.Add(column);
 
             // Generar una columna por cada EVALUACION
-            List<Evaluacion> listaEvaluaciones = logicaEvaluaciones.ObtenerEvaluaciones(idCurso);
+            List<Evaluacion> listaEvaluaciones = logicaEvaluaciones.ObtenerEvaluacionesPorCurso(idCurso);
             foreach (Evaluacion evaluacion in listaEvaluaciones)
             {
                 column = new DataColumn();
