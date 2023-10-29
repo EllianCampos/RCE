@@ -1,8 +1,3 @@
-using System.Windows.Forms;
-using LOGICA;
-using ENTIDADES;
-using Microsoft.VisualBasic;
-
 namespace PRESENTACION
 {
     public partial class FrmMenuPrincipal : Form
